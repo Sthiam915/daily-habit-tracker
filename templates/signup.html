@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sign up</title>
+    <style type = "text/css"></style>
+    <link href = "{{url_for('static', filename ='signup.css')}}" rel = "stylesheet">
+</head>
+<body>
+    
+    <div id = "panel">
+        <h1 id = "mt">Sign Up</h1>
+        <p id = "first-name" >Name</p>
+        <input type="text" id = "name" placeholder = "">
+        <p id = "username">User Name</p>
+        <input type="text" id = "uname">
+        <p id = "password">Password</p>
+        <input type="password" id = "pwd">
+        <p id = "confirm-password">Confirm Password</p>
+        <input type="password" id = "cpwd">
+        <p id = 'validate'></p>
+        <button id = "create" onclick = "create()">Sign Up</button>
+        <a id = "switch" href = "{{url_for('templates', filename = 'login.html')}}">Have an account? Sign in here</a> 
+    </div>
+    <script type="text/javascript", src = "{{url_for('static', filename = 'signup.js            ')}}"></script>
+
+</body>
+</html>

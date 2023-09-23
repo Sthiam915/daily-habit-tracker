@@ -1,0 +1,8 @@
+{
+'initialized' : 0,
+'day' : 0,
+'archives' : [~, ~, ~,],
+'tasks' : [~, ~, ~,],
+'taskdata' : [[day], [day], [day], //[day] => [[day, score, total], [task1, status], [task2..
+'daysactive' : [day, day, day]
+}
