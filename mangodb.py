@@ -169,7 +169,7 @@ class mangodb(object):
         os.chdir(self.home)
         os.chdir(self.name)
         os.chdir('sessions')
-        sessid = self.makesessionid(username)
+        sessid = self.makesessionid()
         sessionfile = open(sessid + '.json', 'w')
         sessionfile.write(json.dumps({'username':username}))
         sessionfile.close()
