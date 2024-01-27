@@ -36,5 +36,6 @@
 - task hover animations
 - make add task larger
 - center scores when less than 10 items
+- Blocks with multiple days leave behind history(delete block not creating new row for archive)
 
 3igda6m8rzsqzr5c
