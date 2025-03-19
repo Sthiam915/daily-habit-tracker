@@ -1,0 +1,52 @@
+= -> complete
+- -> incomplete
+? -> re-evaluate
+
+
+= removing/editing task 
+
+= reading date to update day  
+= filling in days if not active  
+
+= day 1 setup                 
+= help menu                   
+= add task menu               
+	= task cannot be added if name is empty		
+	= task cannot be aded if name is already in list of tasks 	
+
+
+= create database with user info          
+	= make template for user object	      
+= create username and password login      
+
+- general site aesthetics             
+	= task update animations              
+	? notification pop up style/animation  
+		- task menu style
+		= delete task
+
+	= close head block menu with a cross or *clicking outside of the menu* maybe
+	= differentiate head menu title from options
+	= make sure head block text doesn't overlap with settings icon
+
+
+- "Are you sure?" for deleting task
+= add a remove button for head menu
+- add limit for length of task name
+- change "task is too long" to "task name is too long"
+? tweak colors when menu is open
+- make site responsive
+- confirm add task with enter
+- task hover animations?
+? make add task larger
+- center scores when less than 10 items
+	? make score block wider if there is fewer items
+? Blocks with multiple days leave behind history(delete block not creating new row for archive)
+	? delete block working when adding another task after having deleted?
+
+- Write name in welcome text
+- refactor rendering(css manipulation) code
+- make gear turn back when menu is exited, not when another gear is clicked
+
+
+3igda6m8rzsqzr5c

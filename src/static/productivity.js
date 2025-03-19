@@ -10,6 +10,8 @@ let tasks;
 let runnable = false;
 var tasks_today;
 const DAY_LENGTH = 86400000;
+var x = new Date();
+var today = Math.floor(x.getTime()/DAY_LENGTH) + 1;
 
 if (document.cookie.length == 10 || document.cookie == "") {
   fetch("/login").then((response) => (window.location.href = response.url));
@@ -34,17 +36,14 @@ fetch(`get-userdata/${document.cookie.slice(10)}`, { method: "GET" })
       render_data();
     }
   });
-var x = new Date();
 
-var today = Math.floor(x.getTime()/DAY_LENGTH) + 1;
 function run_main() {
-  //setting up day and checking if new day
   if (daysActive.length == 0) {
     daysActive.push(today);
   }
-  check_day();
+  update_day();
 }
-let calculated_width;
+
 function log_out() {
   document.cookie =
     "sessionid=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
@@ -53,8 +52,12 @@ function log_out() {
 function update_day() {
   let last_day = daysActive[daysActive.length - 1]
   let day_difference = today - last_day;
+
+  if(day_difference < 0){
+    return;
+  }
   
-  for (z = 0; z < day_difference; z++) {
+  for(z = 0; z < day_difference; z++) {
     daysActive.push(last_day + z + 1);
     new_day();
   }
@@ -107,27 +110,6 @@ function update_text() {
 let taskout = "";
 let task = document.getElementById("taskin");
 task.value = "";
-
-let currday = new Date();
-let currentDate = [
-  currday.getFullYear(),
-  currday.getMonth(),
-  currday.getDate(),
-];
-
-function check_day() {
-  let newDateref = new Date();
-  let newDate = [
-    newDateref.getFullYear(),
-    newDateref.getMonth(),
-    newDateref.getDate(),
-  ];
-  if (newDate > currentDate) {
-    update_day();
-    currentDate = newDate;
-  }
-  setTimeout(check_day, 1000);
-}
 
 var createTask = document.getElementById("create-task");
 createTask.onmouseover = function () {
@@ -301,8 +283,6 @@ function update_block(item) {
 }
 
 function new_day() {
-  nd = new Date();
-  newdate = [nd.getFullYear(), nd.getMonth(), nd.getDate()];
   day = day + 1;
   taskdata.push(dataday);
 
@@ -347,6 +327,15 @@ function getColor(score) {
   }
 }
 
+/*
+    Render tasks and daily scores as colored blocks 
+    for each day since first day user joined, and 
+    render headers as grey blocks, handling settings
+    for each task
+
+    I create each block using raw js, leading
+    to very verbose function
+*/
 function render_data() {
   update_text();
   lasticonpressed = "null";
