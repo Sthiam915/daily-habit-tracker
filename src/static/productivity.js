@@ -98,12 +98,12 @@ function update_text() {
     if (tasks_today == 1) {
       document.getElementById(
         "explainer"
-      ).textContent = `Welcome. You have ${tasks_today} task remaining today.`;
+      ).textContent = `Welcome, ${user_data["name"]}. You have ${tasks_today} task remaining today.`;
       return;
     }
     document.getElementById(
       "explainer"
-    ).textContent = `Welcome. You have ${tasks_today} tasks remaining today.`;
+    ).textContent = `Welcome, ${user_data["name"]}. You have ${tasks_today} tasks remaining today.`;
   }
 }
 
