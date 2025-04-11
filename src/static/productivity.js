@@ -212,6 +212,11 @@ function add_task() {
     alert("Task name cannot be empty");
     return;
   }
+if (task.value.length > 50) {
+  alert("Task name cannot exceed 50 characters");
+  task.value = "";
+  return;
+}
   if (tasks.includes(task.value)) {
     alert("Task already exists");
     return;
@@ -282,7 +287,7 @@ function update_block(item) {
   update_text();
 }
 
-function new_day() {
+function new_day() {  
   day = day + 1;
   taskdata.push(dataday);
 
@@ -777,7 +782,7 @@ function confirm_edit(task_number) {
     if (edit_input.value == "") {
       alert("Task name cannot be empty");
     } else if (edit_input.value.length > 50) {
-      alert("Task is too long");
+      alert("Task name cannot exceed 50 characters");
     } else {
       alert("Task already exists");
     }
