@@ -132,6 +132,11 @@ createTask.onmouseleave = function () {
 function create_task() {
   var create = document.getElementById("create-task");
   var task_input = document.getElementById("taskin");
+  task_input.addEventListener('keydown', function(event) {
+    if (event.key === "Enter"){
+      add_task();
+    }
+  });
   var add = document.getElementById("add");
   var confirm = document.getElementById("confirm-addition");
   var twist = document.getElementById("add2");
@@ -410,6 +415,8 @@ function render_data() {
     hmenu_content_confirm.setAttribute("class", "headblock-menu-confirm");
     hmenu_content_confirm.setAttribute("id", "confirm" + ":" + i.toString());
 
+    
+
     hmenu_content_delete.textContent = "Delete Dask";
     hmenu_content_edit.textContent = "Edit Task";
     hmenu_content_confirm.textContent = "Confirm";
@@ -424,6 +431,11 @@ function render_data() {
     hmenu_content_confirm.onclick = function () {
       confirm_edit(current_num);
     };
+    hmenu_content_new.addEventListener('keydown', function(event) {
+      if (event.key === "Enter"){
+        confirm_edit(current_num);
+      }
+    });
 
     hmenu.appendChild(hmenu_content_delete);
     hmenu.appendChild(hmenu_content_edit);
