@@ -417,7 +417,7 @@ function render_data() {
 
     
 
-    hmenu_content_delete.textContent = "Delete Dask";
+    hmenu_content_delete.textContent = "Delete Task";
     hmenu_content_edit.textContent = "Edit Task";
     hmenu_content_confirm.textContent = "Confirm";
 

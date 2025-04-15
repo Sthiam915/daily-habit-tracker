@@ -47,6 +47,16 @@
 - Write name in welcome text
 - refactor rendering(css manipulation) code
 - make gear turn back when menu is exited, not when another gear is clicked
+- update README
+- convert taskdata to array of objects
+- remove dataday
+- examine inefficiencies in rendering
+- Date updates before midnight?
+- Make task headers sticky
+- Make score blocks sticky?
+- change "edit task" to "rename task"
+- make task menu larger
+- Update scroll wheel
 
 
 3igda6m8rzsqzr5c
