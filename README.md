@@ -22,7 +22,7 @@ To run server locally use the command:
 ```
 flask run
 ```
-Terminal will indicate which URL the app is running on. By default, it should be http://127.0.0.1:5000.
+Terminal will indicate which URL the app is running on. By default, it should be http://127.0.0.1:5000 by default.
 
 ### Features
 * Add a task
