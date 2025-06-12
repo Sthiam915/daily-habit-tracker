@@ -15,7 +15,7 @@
     <span id = "background"></span>
     <span id = "panel">
     <span id = "main-text"> Log In</span>
-    <a id = "switch" href = "{{url_for('templates', filename = 'signup.html')}}">Don't have an account? Sign up here</a> 
+    <a id = "switch" href = "{{url_for('signup')}}">Don't have an account? Sign up here</a> 
     <input id = "usernamein" placeholder="Input Email"></input>
 <input type = "password" id = "passwordin" placeholder="Input Password">
 
@@ -27,6 +27,6 @@
 <p id = "respond"></p>
 </span>
 <span class = "container"></span>
-<script type="text/javascript", src = "{{url_for('static', filename = 'login.js            ')}}"></script>
+<script type="text/javascript", src = "{{url_for('static', filename = 'login.js')}}"></script>
 </body>
 </html>

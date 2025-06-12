@@ -9,6 +9,7 @@ let daysActive;
 let tasks;
 let runnable = false;
 var tasks_today;
+const DAY_LENGTH = 86400000;
 
 if (document.cookie.length == 10 || document.cookie == "") {
   fetch("/login").then((response) => (window.location.href = response.url));
@@ -35,7 +36,7 @@ fetch(`get-userdata/${document.cookie.slice(10)}`, { method: "GET" })
   });
 var x = new Date();
 
-var today = [x.getFullYear(), x.getMonth(), x.getDate()];
+var today = Math.floor(x.getTime()/DAY_LENGTH) + 1;
 function run_main() {
   //setting up day and checking if new day
   if (daysActive.length == 0) {
@@ -44,77 +45,17 @@ function run_main() {
   check_day();
 }
 let calculated_width;
-function account() {
+function log_out() {
   document.cookie =
     "sessionid=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
   fetch("/login").then((response) => (window.location.href = response.url));
 }
 function update_day() {
-  var day_difference = 0;
-  var x = new Date();
-  var current_day = [x.getFullYear(), x.getMonth(), x.getDate()];
-  var last_day = daysActive[daysActive.length - 1];
-  //append each day between the current and last day to the list
-
-  if (current_day > last_day) {
-    var currentDate = new Date(current_day[0], current_day[1], current_day[2]);
-    var lastDate = new Date(last_day[0], last_day[1], last_day[2]);
-    var timeDifference = Math.abs(currentDate - lastDate);
-    day_difference = Math.ceil(timeDifference / (1000 * 60 * 60 * 24));
-  } else {
-    return;
-  }
-  temp_day = [...last_day];
-
-  while (temp_day < current_day) {
-    if (
-      temp_day[1] == 0 ||
-      temp_day[1] == 2 ||
-      temp_day[1] == 4 ||
-      temp_day[1] == 6 ||
-      temp_day[1] == 7 ||
-      temp_day[1] == 9 ||
-      temp_day[1] == 11
-    ) {
-      if (temp_day[2] == 31) {
-        temp_day[2] = 1;
-        temp_day[1] += 1;
-      } else {
-        temp_day[2] += 1;
-      }
-    } else if (
-      temp_day[1] == 3 ||
-      temp_day[1] == 5 ||
-      temp_day[1] == 8 ||
-      temp_day[1] == 10
-    ) {
-      if (temp_day[2] == 30) {
-        temp_day[2] = 1;
-        temp_day[1] += 1;
-      } else {
-        temp_day[2]++;
-      }
-    } else if (temp_day[1] == 1) {
-      if (temp_day[2] == 28) {
-        temp_day[2] = 1;
-        temp_day[1] += 1;
-      } else {
-        temp_day[2]++;
-      }
-    } else if (temp_day[1] == 12) {
-      if (temp_day[2] == 31) {
-        temp_day[1] = 0;
-        temp_day[0] += 1;
-      } else {
-        temp_day[2]++;
-      }
-    }
-
-    l = new Date(temp_day[0], temp_day[1], temp_day[2]);
-    daysActive.push([l.getFullYear(), l.getMonth(), l.getDate()]);
-  }
-
+  let last_day = daysActive[daysActive.length - 1]
+  let day_difference = today - last_day;
+  
   for (z = 0; z < day_difference; z++) {
+    daysActive.push(last_day + z + 1);
     new_day();
   }
   save_data();
@@ -133,9 +74,7 @@ function save_data() {
     body: JSON.stringify(user_data),
   });
 }
-function clear_tasks() {
-  a = new Date();
-}
+
 function update_text() {
   tasks_today = 0;
 
@@ -344,13 +283,14 @@ function update_block(item) {
     "rgba(0,0,0,0.3)";
   document.getElementById("score" + index[0].toString()).style.backgroundColor =
     getColor(taskdata[index[0]][0][1])[0];
+  temp_day = new Date(daysActive[index[0]] * DAY_LENGTH);
   document.getElementById("score" + index[0].toString()).innerHTML =
     "<br>" +
-    months[daysActive[index[0]][1]] +
+    months[temp_day.getMonth()] +
     " " +
-    daysActive[index[0]][2] +
+    temp_day.getDate() +
     ", " +
-    daysActive[index[0]][0] +
+    temp_day.getFullYear() +
     "\n" +
     taskdata[index[0]][0][1].toString() +
     "%";
@@ -508,14 +448,16 @@ function render_data() {
     taskday.setAttribute("class", "taskday");
     document.getElementById("rows").appendChild(taskday);
 
+    block_day = new Date(daysActive[i] * DAY_LENGTH);
+
     const scoreblock = document.createElement("span");
     scoreblock.innerHTML =
       "<br>" +
-      months[daysActive[i][1]] +
+      months[block_day.getMonth()] +
       " " +
-      daysActive[i][2] +
+      block_day.getDate() +
       ", " +
-      daysActive[i][0] +
+      block_day.getFullYear() +
       "\n" +
       taskdata[i][0][1].toString() +
       "%";

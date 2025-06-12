@@ -22,9 +22,9 @@
         <input type="password" id = "cpwd">
         <p id = 'validate'></p>
         <button id = "create" onclick = "create()">Sign Up</button>
-        <a id = "switch" href = "{{url_for('templates', filename = 'login.html')}}">Have an account? Sign in here</a> 
+        <a id = "switch" href = "{{url_for('login')}}">Have an account? Sign in here</a> 
     </div>
-    <script type="text/javascript", src = "{{url_for('static', filename = 'signup.js            ')}}"></script>
+    <script type="text/javascript", src = "{{url_for('static', filename = 'signup.js')}}"></script>
 
 </body>
 </html>

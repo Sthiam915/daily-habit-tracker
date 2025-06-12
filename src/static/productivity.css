@@ -83,7 +83,7 @@ input{
     width: 100px;
     height: 20px;
     cursor: pointer;
-    transition: color 0.3s, background-color 0.3s, width 0.3s, height 0.3s;
+    transition: color 0.3s, background-color 0.3s, width 0.3s, height 0.3s, bottom 0.3s;
     
 }
 

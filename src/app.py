@@ -1,9 +1,10 @@
 from flask import Flask, render_template, request \
-,jsonify, url_for, redirect, make_response, session
-from random import randint, shuffle
+, redirect, make_response
+from flask_bcrypt import Bcrypt
+from random import randint
 import json
 import mangodb
-from flask_bcrypt import Bcrypt
+
 
 def to_hex(num):
     hex_num = str(hex(num))[2:]
@@ -28,8 +29,6 @@ def home():
 
 @app.route("/get-userdata/<sessionid>", methods = ["GET"])
 def return_userdata(sessionid):
-    #sessionid = sessionid[1:]
-    #sessionid = sessionid[:-1]
     if(app_database.get('sessions',sessionid) != None):
 
         username = app_database.get('sessions',sessionid)['username']
@@ -116,8 +115,5 @@ def encrypt():
     app_database.put('users', user, user['user_name'])
     return None
 
-@app.route('/templates/<filename>')
-def templates(filename):
-    # Your route logic here
-    return render_template(filename)
+
 
